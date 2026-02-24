@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="th" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antique oven-เตาอบแบบโบราณ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    * {
+      font-family: 'Prompt', sans-serif;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--bg-color) 0%, #0a0a0a 100%);
+    }
+    .card-surface {
+      background-color: var(--surface-color);
+    }
+    .text-main {
+      color: var(--text-color);
+    }
+    .btn-primary {
+      background-color: var(--primary-action);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.1);
+    }
+    .btn-secondary {
+      background-color: var(--secondary-action);
+    }
+    .btn-secondary:hover {
+      filter: brightness(1.1);
+    }
+    .nav-link {
+      color: var(--text-color);
+      transition: color 0.3s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary-action);
+    }
+    .image-placeholder {
+      background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+      border: 2px dashed #4b5563;
+    }
+    .chat-bubble {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+    .section-hidden {
+      display: none;
+    }
+    .section-active {
+      display: block;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="h-full overflow-auto gradient-bg text-main" style="--bg-color: #1e3a5f; --surface-color: #2d3748; --text-color: #f7fafc; --primary-action: #ed8936; --secondary-action: #f6ad55;"><!-- Navigation -->
+   <nav class="sticky top-0 z-50 card-surface backdrop-blur-md bg-opacity-90 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+     <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
+  <div class="w-10 h-10 rounded-full btn-primary flex items-center justify-center"><span class="text-xl">🔥</span></div>
+  <span id="nav-site-name" class="text-xl font-bold">Antique oven</span>
+</div><!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-6"><button onclick="showSection('home')" class="nav-link font-medium" data-nav="home">หน้าแรก</button> <button onclick="showSection('about')" class="nav-link font-medium" data-nav="about">เกี่ยวกับ</button> <button onclick="showSection('products')" class="nav-link font-medium" data-nav="products">ประเภทไม้</button> <button onclick="showSection('pricing')" class="nav-link font-medium" data-nav="pricing">ราคา/ต้นทุน</button> <button onclick="showSection('delivery')" class="nav-link font-medium" data-nav="delivery">การขายส่ง</button> <button onclick="showSection('contact')" class="nav-link font-medium" data-nav="contact">ติดต่อเรา</button>
+      </div><!-- Mobile Menu Button --> <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-700">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+       </svg></button>
+     </div><!-- Mobile Menu -->
+     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-600 pt-4">
+      <div class="flex flex-col gap-3"><button onclick="showSection('home'); toggleMobileMenu()" class="nav-link font-medium text-left py-2">หน้าแรก</button> <button onclick="showSection('about'); toggleMobileMenu()" class="nav-link font-medium text-left py-2">เกี่ยวกับ</button> <button onclick="showSection('products'); toggleMobileMenu()" class="nav-link font-medium text-left py-2">ประเภทไม้</button> <button onclick="showSection('pricing'); toggleMobileMenu()" class="nav-link font-medium text-left py-2">ราคา/ต้นทุน</button> <button onclick="showSection('delivery'); toggleMobileMenu()" class="nav-link font-medium text-left py-2">การขายส่ง</button> <button onclick="showSection('contact'); toggleMobileMenu()" class="nav-link font-medium text-left py-2">ติดต่อเรา</button>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Home Section -->
+   <section id="section-home" class="section-active fade-in"><!-- Hero -->
+   <div class="relative py-16 md:py-24 px-4">
+
+  <div class="relative max-w-7xl mx-auto text-center z-10">
+     <div class="max-w-7xl mx-auto text-center">
+      <h1 id="hero-title" class="text-4xl md:text-6xl font-bold mb-4">Antique oven</h1>
+      <p id="hero-slogan" class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">เตาอบแบบโบราณ</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center"><button onclick="showSection('pricing')" class="btn-primary px-8 py-3 rounded-full font-semibold text-white shadow-lg transform hover:scale-105 transition"> 💰 ดูราคาและต้นทุน </button> <button onclick="showSection('contact')" class="btn-secondary px-8 py-3 rounded-full font-semibold text-gray-900 shadow-lg transform hover:scale-105 transition"> 📞 ติดต่อเรา </button>
+      </div>
+     </div>
+</div><!-- Features Images -->
+    <div class="max-w-7xl mx-auto px-4 pb-16">
+     <h2 class="text-2xl md:text-3xl font-bold text-center mb-10">🔥 การเผาถ่าน</h2>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <div class="card-surface rounded-4xl overflow-hidden shadow-xl">
+        <img src="e1.jpg" class="w-full h-48 object-cover" alt="การเผาถ่าน">
+        <div class="p-5">
+            <h3 class="font-semibold text-lg mb-2">เตาอบครึ่งวงรี</h3>
+            <p class="text-gray-400 text-sm">เป็นเตาเผาแบบโบราณมีลักษณะเหมือนครึ่งวงรี ก่อหลังคาขึ้นคล้ายกับอุโมงครึ่งวงรี ทำจากดินหรืออิฐ อาศัยการควบคุมไฟในอุนหภูมิที่ไม่ร้อนจนเกินไป ระบายอากาศได้ดี ไม่ต้องขุดหลุม ใส่ไม้ได้ในประมาณที่พอเหมาะ เน้นย้ำการเผาถ่าน1บ้านสามารถมีเตาเผาได้เพียง1เตาเท่านั้น เนื่องจากถ้ามากกว่านี้ผิดกฎหมายเพราะเนื่องจากเป็นการหารายได้เสริมเท่านั้นไม่ได้เป็นโรงงานผลิตที่สามารถทำเตาเยอะๆได้เพราะด้วยว่าการเผาถ่านเป็นการใช้ไม้เป็นส่วนประกอบ อาจผิดกฏหมายได้ แต่ไม่ต้องห่วงถ้าเราไม่ได้ทำเกินกว่ากฏหมายกำหนดก็สามารถทำได้เนื่องด้วยถือว่าเป็นการทำมาหากินเพียงเท่านั้น</p>
+        </div>
+    </div> <div class="card-surface rounded-4xl overflow-hidden shadow-xl">
+        <img src="e2.jpg" class="w-full h-48 object-cover" alt="กระบวนการเผา">
+        <div class="p-5">
+            <h3 class="font-semibold text-lg mb-2">กระบวนการเผา</h3>
+            <p class="text-gray-400 text-sm">การเผาไม้อย่างแรกที่ต้องทำคือการนำไม้เข้าไปในเตา จะเริ่มจากการวางไม้เป็นสี่เหลี่ยมจัสตุรัสโดยต้องห้ามวางปิดป่องเตาด้านล่างเด็ดขาด หลังจากนั้นวางไม้เป็นลำดับชั้นไปเลื่อยๆจนกว่าจะเต็มเตา พอเต็มเตาแล้วให้หาแผ่นปูนมาปิดหน้าเตาขนาดสี่เหลี่ยมพื้นผ้า ประมาณฝาปิดแท้งน้ำ หลังจากนั้นให้เตรียมดินผสมน้ำผสมไม่ให้ดินเหลวละเหนียวจนเกินไปเพื่อที่จะนำดินไปโบกปิดช่องระบายกับปูนแผ่นให้ไม่มีลมเข้าไปข้างใน เหลือไว้เพียงป่องลมข้างล่างกับป่องลมวงกลมขนาดกลางๆข้างบนเพื่อเอาไว้จุดไฟเท่านั้นหลังจากปิดทุกอย่างครบแล้ว สามารถจุดไฟได้เลย วิธีการจุดไฟสามารถนำไฟที่ก่อจากเตาหุงต้มปกติก็ได้หรือจะก่อจากป่องโดยตรงก็ได้ ถ้าก่อไฟจากป่องโดยตรงจะต้องเตรียมอุปกรณ์ไว้จุดไฟ โดยจะมีกากมะพร้าวแผ่นยางที่ตัดไว้ ไฟแช็ค น้ำมันการ์ด และทำการจุดได้เลย หลังจากจุดไฟแล้วต้องรอจนกว่าไฟจะติดและรอให้ไฟรามไปข้างในถึะปิดป่องได้ จะรู้ได้อย่างไงนะหรอ ให้สั่งเกตุป่องไฟด้านล่างว่ามีควัดออกครบทุกป่องแล้วหรือยังถ้าครบแล้วให้ทำการปิดป่องวงกลมด้านบนโดยใช้วิธีเดียวกับปิดช่องทางเข้าได้เลย โดยนำแผ่นปูนรูปทรงกลมหรือสี่เหลี่ยมขนาดพอดี
+กับปากป่องและเตรียมดินที่เคยโบกปากทางเข้ามาโบกปิดป่องวงกลมด้านบนให้สนิด หลังจากนั้นต้องคอยเดินดูเป็นระยะๆ เพื่อดูว่าไฟรามลงไปใกล้ถึงด้านล่างแล้วหรือยัง วิธีการดูคือดูป่องลมด้านล่างว่ามีไฟสีแดงหรือไม่ถ้ามีไฟสีแดงให้เราเตรียมปิดป่องด้านล่างไปที่ละป่องและจะเหลือป่องไฟไว้นึงป่องเพื่อดูว่าไฟเริ่มไหม้ทั่วแล้วหรือยัง ถ้ามั่นใจว่าทั่วแล้วให้ปิดป่องสุดท้ายได้เลย หลังจากปิดให้อาบน้ำเตา1ครั้ง การอาบน้ำเตาคือการใช้ดินผสมน้ำไปในทางที่เกือบจะเหลว แต่ไม่เหลวจนเป็นน้ำ ใช้ขัดหรือกะละมังตักอาบน้ำตักดินที่ผสมไว้สาดไปที่เตาสักประมาณ1-2กระเป๋ง และทิ้งไว้ประมาณ1-2วัน</p>
+        </div>
+    </div>
+
+    <div class="card-surface rounded-4xl overflow-hidden shadow-xl">
+        <img src="e3.jpg" class="w-full h-48 object-cover" alt="ถ่านไม้">
+<div class="p-5">
+        <h3 class="font-semibold text-lg mb-2">ผลิตภัณฑ์สำเร็จ</h3>
+        <p class="text-gray-400 text-sm">ถ่านไม้คุณภาพดี พร้อมจำหน่าย</p>
+       </div>
+<div class="p-5">
+            <h3 class="font-semibold text-lg mb-2">ถ่านที่ได้จากการเผา</h3>
+            <p class="text-gray-400 text-sm">หลังจากที่ทิ้งไว้ประมาณ1-2วัน ให้เปิดปากป่องด้านบนและด้านล่างเช็คดูว่าถ่านไหม้หมดหรือยังถ้าไหม้หมดแล้วให้นำดินผสมน้ำที่ไช้รดเตาในขั้นตอนก่อนหน้านี้ ประมาณ2-3กระเป๋งสาดใส่เตาและทิ้งไว้ให้เตาเย็นลง พอเตาเย็นลงแล้วให้เปิดหน้าเตาได้เลย สิ่งที่ต้องคอยระวังคือวันแรกที่เปิดเตาถึงข้างนอกจะเย็นแล้วแต่ข้างในยังร้อนอยู่ห้ามเปิดและเข้าไปเลยเด็ดขาดเพราะอาจะเกิดอันตรายได้ ให้เรานำสายยางต่อกับก็อกน้ำและฉีดน้ำพรมๆถ่านด้านในและปล่อยทิ้งไว้1วัน พอหลังจากครบ1วันให้ค่อยๆเอาถ่านออกและนำไปผึ่งไว้เพื่อให้ถ่านที่โดนน้ำแห้งแล้วค่อยนำไปกรอกใส่กระสอบหรือถุง</p>
+        </div>
+ </section><!-- About Section -->
+   <section id="section-about" class="section-hidden fade-in py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">📖 คำแนะนำ</h2>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+      <div class="card-surface rounded-2xl p-6">
+      <div class="flex justify-center items-center h-64">
+  <img 
+    src="e4.jpg" 
+    class="h-full w-auto object-contain rounded-2xl border-2 border-dashed border-gray-400 p-2"
+  >
+</div>
+
+       <h3 class="font-semibold text-xl mb-2">ปัญหาที่อาจจะเจอ</h3>
+       <p class="text-gray-400"><p class="font-bold text-yellow-400 mb-1">1.ถ้าเผาแล้วออกมาเป็น ขี้เถ้า</p>สาเหตุ : อากาศเข้าเยอะเกินไป หรือปิดเตาช้าเกินไป หรืออาจมีรอยรั่วที่ผนังเตา <br>วิธีแก้ : ให้เช็ครอยรั่ว และช่วงที่ควันใสให้รีบปิดเตาทันที<br><p class="font-bold text-yellow-400 mb-1">2.ถ้าเผาแล้วยังเป็นท่อนฟืน/ไม้ยังดิบ</p>สาเหตุ : ความร้อนของไฟไม่พอ หรือไม้ยังมีความชื้น<br>วิธีแก้ : ต้องทำให้ความร้อนเพียงพอ และช่วงควันออกเยอะ ต้องปล่อยให้พุ่งแรงๆ นานพอที่ไฟจะเปลี่ยนเป็นสีเขียวอมฟ้า<br><p class="font-bold text-yellow-400 mb-1">3.ถ้าถ่านออกมาเปราะและแตกหักง่าย </p>สาเหตุ :อุณหภูมิในเตาสูงเกินไปในช่วงจุดไฟแรกๆ หรือไม้ที่ใส่เป็นไม้ผุเยอะกว่าปกติ <br>วิธีแก้ : ปิดป่องลมสัก2-3ป่อง หยุดเติมไฟเพิ่ม รอให้อุณหภูมิเป็นปกติแล้วค่อยเปิดป่อง</p>
+      </div>
+      <div class="card-surface rounded-2xl p-6">
+       <div class="flex justify-center items-center h-64">
+  <img 
+    src="e5.jpg" 
+    class="h-full w-auto object-contain rounded-2xl border-2 border-dashed border-gray-400 p-2"
+  >
+</div>
+
+       <h3 class="font-semibold text-xl mb-2">วิธีสังเกตุ</h3>
+       <p class="text-gray-400">1.ถ้าควันเป็นสีขาวขุ่นเหมือนไอน้ำ ควันออกมาเอื่อยๆและถ้ามีกลิ่นเหม็นเขียว เหม็นเหมือนไม้ตัดสดๆ แสดงว่าเตยังมีอุณหภูมิที่ยังไม่สูงมาก ให้ค่อยเติมไม้แห้งๆที่เรจุดหน้าเตาไปเรื่อยๆ และรอประมาณ2-5 ชั่วโมง ควันถึงจะเริ่มเปลี่ยนสี ขึ้นอยู่กับว่าไม้ที่ใส่ไปสดแค่ไหน<br>2.ถ้าควันเปลี่ยนเป็นสีขาวอมเหลือง หรือสีน้ำตาลอ่อนๆ ควันพุ่งออกมาแรงมากๆและถ้ามีกลิ่นฉุนจนแสบจมูก แสบตาจนน้ำตาไหล แสดงว่าไม้เริ่มแห้ง ไม้เลยปล่อยแก๊สออกมาพอโดยเข้ากับไฟเลยมีกลิ่นที่รุนแรง และถ้าเป็นแบบนี้แล้ว ควรหยุดเติมไฟเพราะไฟได้ติดเต็มที่แล้วถ้ายิ่งเติมอาจทำให้อุณหภูมิในเตายิ่งสูงมีโอกาสมากที่จะทำให้เตาแตก<br>3.ถ้าควันเปลี่ยนเป็นสีฟ้าจางๆหรือน้ำเงินอมเขียวจางๆและถ้ากลิ่นฉุนก่อนหน้านี้เริ่มหายหรือเริ่มจางลงแล้วนั้นแสดงว่าไฟได้ติดและอุณหภูมิกำลังพอดีให้เติมไฟรอบสุดท้ายและปิดป่องได้เลย</p>
+      </div>
+     </div>
+     <div class="card-surface rounded-2xl p-8">
+      <h3 class="text-2xl font-bold mb-6 text-center">🎯 ข้อดีและข้อเสีย</h3>
+      <div class="mb-6 text-center">
+       <p class="text-gray-300">📍<span class="font-semibold text-xl" style="color: var(--primary-action)">เตาอบแบบโบราณ</span></p>
+       <p class="text-gray-400 text-sm mt-1"></p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-full btn-primary flex items-center justify-center flex-shrink-0"><span class="text-xl">✓</span>
+        </div>
+        <div>
+         <h4 class="font-semibold mb-1">ต้นทุน</h4>
+         <p class="text-gray-400 text-sm">ข้อดีต้นทุนต่ำ แทบไม่ต้องใช้เงิน ถ้ามีสกิลในการปั่น<br>ข้อเสียใช้แรงในการขุด/ปั้น</p>
+        </div>
+       </div>
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-full btn-primary flex items-center justify-center flex-shrink-0"><span class="text-xl">✓</span>
+        </div>
+        <div>
+         <h4 class="font-semibold mb-1">คุณภาพถ่าน</h4>
+         <p class="text-gray-400 text-sm">ข้อดีได้จำนวนเยอะ<br>ข้อเสียมีขี้เถ้าเยอะ ถ่านอาจปนดินเยอะ</p>
+        </div>
+       </div>
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-full btn-primary flex items-center justify-center flex-shrink-0"><span class="text-xl">✓</span>
+        </div>
+        <div>
+         <h4 class="font-semibold mb-1">ระยะเวลา</h4>
+         <p class="text-gray-400 text-sm">ข้อดี-<br>ข้อเสียนาน (3-7วัน หรือเป็นสัปดาห์)</p>
+        </div>
+       </div>
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-full btn-primary flex items-center justify-center flex-shrink-0"><span class="text-xl">✓</span>
+        </div>
+        <div>
+         <h4 class="font-semibold mb-1">ความทนทาน</h4>
+         <p class="text-gray-400 text-sm">ข้อดีใช้ได้ในระยะยาว<br>ข้อเสียต้องซ่อมแซมบ่อยๆ</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Products Section -->
+   <section id="section-products" class="section-hidden fade-in py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">🛒ชนิดไม้</h2>
+     <p class="text-gray-400 text-center mb-12">ที่สามารถขายได้</p>
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <div class="card-surface rounded-2xl overflow-hidden shadow-xl">
+       <div class="image-placeholder h-40 flex items-center justify-center">
+        <div class="text-center p-4"><span class="text-4xl">🌲</span>
+         <p class="mt-2 text-gray-400 text-xs"></p>
+        </div>
+       </div>
+       <div class="p-4">
+        <h3 class="font-semibold mb-1">ถ่านไม้เนื้อแข็ง</h3>
+        <p class="text-gray-400 text-sm mb-2">เช่น มะขาม ไม้แดง ไม้ประดู่</p>
+        <div class="font-bold" style="color: var(--primary-action)">
+         ฿15-25/กก.
+        </div>
+       </div>
+      </div>
+      <div class="card-surface rounded-2xl overflow-hidden shadow-xl">
+       <div class="image-placeholder h-40 flex items-center justify-center">
+        <div class="text-center p-4"><span class="text-4xl">🌿</span>
+         <p class="mt-2 text-gray-400 text-xs"></p>
+        </div>
+       </div>
+       <div class="p-4">
+        <h3 class="font-semibold mb-1">ถ่านไม้เนื้ออ่อน</h3>
+        <p class="text-gray-400 text-sm mb-2">เช่น ไม้ยูคาลิปตัส กระถิน</p>
+        <div class="font-bold" style="color: var(--primary-action)">
+         ฿8-12/กก.
+        </div>
+       </div>
+      </div>
+      <div class="card-surface rounded-2xl overflow-hidden shadow-xl">
+       <div class="image-placeholder h-40 flex items-center justify-center">
+        <div class="text-center p-4"><span class="text-4xl">📦</span>
+         <p class="mt-2 text-gray-400 text-xs"></p>
+        </div>
+       </div>
+       <div class="p-4">
+        <h3 class="font-semibold mb-1">บรรจุภัณฑ์</h3>
+        <p class="text-gray-400 text-sm mb-2">เริ่ม2-3ถุง / กระสอบ</p>
+        <div class="font-bold" style="color: var(--primary-action)">
+         ตามออเดอร์ที่สั่ง
+        </div>
+       </div>
+      </div>
+      <div class="card-surface rounded-2xl overflow-hidden shadow-xl">
+       <div class="image-placeholder h-40 flex items-center justify-center">
+        <div class="text-center p-4"><span class="text-4xl">🚚</span>
+         <p class="mt-2 text-gray-400 text-xs"></p>
+        </div>
+       </div>
+       <div class="p-4">
+        <h3 class="font-semibold mb-1">พร้อมส่ง</h3>
+        <p class="text-gray-400 text-sm mb-2">ส่งขายต่อให้กับพ่อค้าคนกลางจะเข้ามารับประมาณ3/7วันแล้วแต่รอบ</p>
+        <div class="font-bold" style="color: var(--primary-action)">
+        หรือจะโทรให้เข้ามาเอาตอนที่เราสะดวกจะขายก็ได้
+        </div>
+       </div>
+      </div>
+     </div><!-- Sales Channels -->
+     <div class="card-surface rounded-2xl p-8">
+      <h3 class="text-2xl font-bold mb-6 text-center">📍 ช่องทางการจำหน่าย</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+       <div class="text-center p-4 border border-gray-600 rounded-xl"><span class="text-4xl mb-4 block">🏪</span>
+        <h4 class="font-semibold mb-2">ขายปลีก</h4>
+        <p class="text-gray-400 text-sm">สามารถโทรจองไว้ล่วงหน้าและเข้ามาเอาได้ มีบริการส่งในระแวกใกล้ๆ<br>
+       เริ่มต้น2กระสอบขึ้นไป</p>
+       </div>
+       <div class="text-center p-4 border border-gray-600 rounded-xl"><span class="text-4xl mb-4 block">🏭</span>
+        <h4 class="font-semibold mb-2">ขายส่ง</h4>
+        <p class="text-gray-400 text-sm">ขายส่งผ่านพ่อค้าคนกลางเท่านั้น<br>
+        </p>
+       </div>
+       <div class="text-center p-4 border border-gray-600 rounded-xl"><span class="text-4xl mb-4 block">📱</span>
+        <h4 class="font-semibold mb-2">ออนไลน์</h4>
+        <p class="text-gray-400 text-sm">สั่งผ่าน Line/Facebook<br>
+         จัดส่งได้แค่ระแวกใกล้ๆเท่านั้น</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Pricing Section -->
+   <section id="section-pricing" class="section-hidden fade-in py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">💰 ราคาและต้นทุน</h2>
+     <p class="text-gray-400 text-center mb-12">ราคาและต้นทุนการผลิต</p>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"><!-- Cost Analysis -->
+      <div class="card-surface rounded-2xl p-6">
+       <h3 class="text-xl font-bold mb-6 flex items-center gap-2"><span class="text-2xl">📊</span> ต้นทุนการผลิต (ต่อเตา)</h3>
+       <div class="space-y-4">
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>ค่าไม้<br>หาข้อซื้อตามหมู่บ้าน ,ตามไร่นา,แต่ถ้ามีแหล่งเป็นของตัวเองก็ไม่ต้้องลงทุนลงแรงอย่างเดียว</span> <span class="font-semibold">฿0</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>ค่าแรงงาน<br>อยู่ที่ว่าอยากจะจ้างหรือทำเองแล้วแต่ความสะดวก</span> <span class="font-semibold">฿200 - 500</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>ค่าเชื้อเพลิง<br>ไฟเช็คปกติ/น้ำมันการ์ด</span> <span class="font-semibold">฿150 - 300</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>ค่าบรรจุภัณฑ์<br>ถ้าขายผ่านพ่อค้าคนกลางไม่เสียค่าบรรจุภัณฑ์เนื่องจากเหมือนกับว่าเค้าซื้อต่อเราเพื่อนำไปส่งอีกที</span> <span class="font-semibold">฿0</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>ค่าใช้จ่ายอื่นๆ</span> <span class="font-semibold">฿0</span>
+        </div>
+        <div class="flex justify-between items-center py-3 bg-gray-700 rounded-lg px-4 -mx-2"><span class="font-bold">รวมต้นทุน</span> <span class="font-bold text-lg" style="color: var(--primary-action)">฿350 - 800</span>
+        </div>
+       </div>
+      </div><!-- Revenue Analysis -->
+      <div class="card-surface rounded-2xl p-6">
+       <h3 class="text-xl font-bold mb-6 flex items-center gap-2"><span class="text-2xl">💵</span> รายได้และกำไร</h3>
+       <div class="space-y-4">
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>ผลผลิตต่อเตา</span> <span class="font-semibold">200 - 300 กก.</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>ราคาขายเฉลี่ย</span> <span class="font-semibold">฿15 - 340</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>รายได้ต่อเตา</span> <span class="font-semibold">฿1,200 - 3,000</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-600"><span>หักต้นทุน</span> <span class="font-semibold text-red-400">-฿350 - 800</span>
+        </div>
+        <div class="flex justify-between items-center py-3 bg-green-900 bg-opacity-50 rounded-lg px-4 -mx-2"><span class="font-bold">กำไรสุทธิ</span> <span class="font-bold text-lg text-green-400">฿800 - 2,200</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- Price List -->
+     <div class="card-surface rounded-2xl p-6">
+      <h3 class="text-xl font-bold mb-6 text-center">🏷️ ราคาสินค้า</h3>
+      <div class="overflow-x-auto">
+       <table class="w-full">
+        <thead>
+         <tr class="border-b border-gray-600">
+          <th class="text-left py-3 px-4">ประเภทถ่าน</th>
+          <th class="text-center py-3 px-4">ปลีก (กก.)</th>
+          <th class="text-center py-3 px-4">ส่ง 100+ กก.</th>
+          <th class="text-center py-3 px-4">ส่ง 500+ กก.</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr class="border-b border-gray-700">
+          <td class="py-3 px-4">ถ่านไม้เนื้อแข็ง (มะขาม/ไม้แดง)</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿25</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿20</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿15</td>
+         </tr>
+         <tr class="border-b border-gray-700">
+          <td class="py-3 px-4">ถ่านไม้เนื้ออ่อน (ยูคาลิปตัส)</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿12</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿10</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿8</td>
+         </tr>
+         <tr class="border-b border-gray-700">
+          <td class="py-3 px-4">ถ่านก้อนใหญ่ (Premium)</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿35</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿28</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿22</td>
+         </tr>
+         <tr>
+          <td class="py-3 px-4">ถ่านบด (สำหรับปิ้งย่าง)</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿18</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿14</td>
+          <td class="text-center py-3 px-4 font-semibold" style="color: var(--primary-action)">฿10</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <p class="text-gray-400 text-sm mt-4 text-center">* ราคาอาจเปลี่ยนแปลงตามสภาวะตลาด</p>
+     </div>
+    </div>
+   </section><!-- Delivery Section -->
+   <section id="section-delivery" class="section-hidden fade-in py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">🚚 เส้นทางการจัดส่ง</h2>
+     <p class="text-gray-400 text-center mb-12">จัดส่งเฉพาะระแวกใกล้ๆ พื้นที่ห่างไกลสามารถติดต่อขอซื้อได้ผ่านพ่อค้าคนกลาง จะทิ้งเบอร์์ติดต่อไว้ให้นะคะ</p><!-- Delivery Zones -->
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="card-surface rounded-2xl p-6 text-center">
+       <div class="w-16 h-16 rounded-full btn-primary mx-auto flex items-center justify-center mb-4"><span class="text-3xl">🏠</span>
+       </div>
+       <h3 class="font-bold text-lg mb-2">โซน A - ใกล้</h3>
+       <p class="text-gray-400 mb-3">ระแวกใกล้เคียง-คนรู้จัก/ลูกค้าประจำ</p>
+       <div class="text-2xl font-bold" style="color: var(--primary-action)">
+        ฟรี
+       </div>
+       <p class="text-sm text-gray-400 mt-1">(1-4กระสอบ )</p>
+      </div>
+      <div class="card-surface rounded-2xl p-6 text-center">
+       <div class="w-16 h-16 rounded-full btn-secondary mx-auto flex items-center justify-center mb-4"><span class="text-3xl">  </span>
+       </div>
+       <h3 class="font-bold text-lg mb-2">โซน B - กลาง</h3>
+       <p class="text-gray-400 mb-3">นอกเขตอำเภอ </p>
+       <div class="text-2xl font-bold" style="color: var(--primary-action)">
+        ฿500-1,500
+       </div>
+       <p class="text-sm text-gray-400 mt-1">(4-10กระสอบ)</p>
+      </div>
+      <div class="card-surface rounded-2xl p-6 text-center">
+       <div class="w-16 h-16 rounded-full bg-gray-600 mx-auto flex items-center justify-center mb-4"><span class="text-3xl">✈️</span>
+       </div>
+       <h3 class="font-bold text-lg mb-2">โซน C - ไกล</h3>
+       <p class="text-gray-400 mb-3">สามารถติดต่อซื้อจากพ่อค้าคนกลางได้เลย หรือมีธุระที่จะผ่านไปทางนั้นก็สามารถสอบถามได้</p>
+       <div class="text-2xl font-bold" style="color: var(--primary-action)">
+        ตามตกลง
+        </div>
+       <p class="text-sm text-gray-400 mt-1">(ทางผ่านเท่านั้น)</p>
+      </div>
+     </div><!-- Map Placeholder -->
+     <div class="card-surface rounded-2xl p-6 mb-12">
+  <h3 class="text-xl font-bold mb-4 text-center">📍</h3>
+<div class="image-placeholder h-64 rounded-xl overflow-hidden">
+    <a href="https://www.google.com/maps/dir//15.6308715,100.8071719/@15.630701,100.8052407,736m/data=!3m1!1e3"
+       target="_blank"
+       class="block w-full h-full">
+<img src="e6.jpg"
+           alt="แผนที่โรงผลิต"
+           class="w-full h-full object-cover">
+</a>
+</div>
+<p class="mt-3 text-sm text-gray-500 text-center">
+    คลิกที่รูปเพื่อเปิดใน Google Maps
+  </p>
+      <div class="mt-4 text-center text-gray-400">
+       <p class="font-semibold"></p>
+       <p class="text-sm mt-1"></p>
+      </div>
+     </div><!-- Delivery Info -->
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card-surface rounded-2xl p-6">
+       <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><span>📋</span> เงื่อนไขการจัดส่ง</h3>
+       <ul class="space-y-3 text-gray-300">
+        <li class="flex items-start gap-2"><span style="color: var(--primary-action)">•</span> <span>1-4 จัดส่งฟรี ในระแวกบ้านใกล้</span></li>
+        <li class="flex items-start gap-2"><span style="color: var(--primary-action)">•</span> <span>ชำระเงินล่วงหน้า 30-50% ก่อนจัดส่ง</span></li>
+        <li class="flex items-start gap-2"><span style="color: var(--primary-action)">•</span> <span>ส่วนที่เหลือชำระหลังจากได้รับของแล้ว</span></li>
+       </ul>
+      </div>
+      <div class="card-surface rounded-2xl p-6">
+       <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><span>⏰</span> ระยะเวลาจัดส่ง</h3>
+       <ul class="space-y-3 text-gray-300">
+        <li class="flex items-start gap-2"><span style="color: var(--primary-action)">•</span> <span>โซน A: 1-2 วันทำการ</span></li>
+        <li class="flex items-start gap-2"><span style="color: var(--primary-action)">•</span> <span>โซน B: 2-3 วันทำการ</span></li>
+        <li class="flex items-start gap-2"><span style="color: var(--primary-action)">•</span> <span>สั่งด่วน +฿300 (ส่งภายใน 24 ชม.เฉพาะจังหวัดใกล้เคียงเท่านั้น)</span></li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="section-contact" class="section-hidden fade-in py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">📞 ติดต่อเรา</h2>
+     <p class="text-gray-400 text-center mb-12">พร้อมให้บริการและตอบคำถามทุกวัน</p>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8"><!-- Contact Info -->
+      <div class="space-y-6">
+       <div class="card-surface rounded-2xl p-6">
+        <h3 class="font-bold text-lg mb-4">📱 ช่องทางติดต่อ</h3>
+        <div class="space-y-4">
+         <div class="flex items-center gap-4 p-3 bg-gray-700 rounded-xl">
+          <div class="w-12 h-12 rounded-full btn-primary flex items-center justify-center"><span class="text-xl">📞</span>
+          </div>
+          <div>
+           <p class="text-sm text-gray-400">โทรศัพท์</p>
+           <p id="contact-phone" class="font-semibold">062-2366627</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-4 p-3 bg-gray-700 rounded-xl">
+          <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center"><span class="text-xl">💬</span>
+          </div>
+          <div>
+           <p class="text-sm text-gray-400">Line ID</p>
+           <p id="contact-line" class="font-semibold">0622366627</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-4 p-3 bg-gray-700 rounded-xl">
+          <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center"><span class="text-xl">📘</span>
+          </div>
+          <div>
+           <p class="text-sm text-gray-400">Facebook</p>
+           <p class="font-semibold">สุพิชญา ฯ.</p>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="card-surface rounded-2xl p-6">
+        <h3 class="font-bold text-lg mb-4">🕐 เวลาทำงาน ติดต่อได้ตลอด (อยู่ที่จะมีสินค้าหรอไม่)</h3>
+        <div class="space-y-2 text-gray-300">
+         <div class="flex justify-between"><span>จันทร์ - ศุกร์</span> <span class="font-semibold">09:00 - 16:00</span>
+         </div>
+         <div class="flex justify-between"><span>เสาร์ - อาทิตย์</span> <span class="font-semibold">10:00 - 15:00</span>
+         </div>
+         <div class="flex justify-between"><span>วันหยุดนักขัตฤกษ์</span> <span class="font-semibold text-red-400">ติดต่อได้ตลอด(ถ้าไม่ติดธุระ)</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Contact Form -->
+      <div class="card-surface rounded-2xl p-6">
+       <h3 class="font-bold text-lg mb-4">✉️ ส่งข้อความถึงเรา</h3>
+       <form id="contact-form" class="space-y-4">
+        <div><label for="name" class="block text-sm text-gray-400 mb-1">ชื่อ-นามสกุล</label> <input type="text" id="name" name="name" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500">
+        </div>
+        <div><label for="phone" class="block text-sm text-gray-400 mb-1">เบอร์โทรศัพท์</label> <input type="tel" id="phone" name="phone" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500">
+        </div>
+        <div><label for="subject" class="block text-sm text-gray-400 mb-1">เรื่อง</label> <select id="subject" name="subject" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500"> <option value="inquiry">สอบถามราคา</option> <option value="order">สั่งซื้อสินค้า</option> <option value="wholesale">ติดต่อขาย</option> <option value="learn">สนใจเรียนรู้การทำถ่าน</option> <option value="other">อื่นๆ</option> </select>
+        </div>
+        <div>
+          <label for="message" class="block text-sm text-gray-400 mb-1">ข้อความ</label> <textarea id="message" name="message" rows="4" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500 resize-none"></textarea>
+        </div>
+        <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-lg hover:shadow-lg transition"> 📨 ส่งข้อความ </button>
+       </form>
+       <div id="form-success" class="hidden mt-4 p-4 bg-green-900 bg-opacity-50 rounded-lg text-green-400 text-center">
+        ✅ ส่งข้อความเรียบร้อยแล้ว! เราจะติดต่อกลับโดยเร็ว
+       </div>
+      </div>
+     </div>
+    </div>
+</section><!-- Footer -->
+   <footer class="card-surface py-8 px-4 mt-16">
+    <div class="max-w-7xl mx-auto text-center">
+     <div class="flex items-center justify-center gap-2 mb-4"><span class="text-2xl">🔥</span> <span id="footer-site-name" class="font-bold text-xl">Antique oven</span>
+     </div>
+     <p class="text-gray-400 mb-4">อาชีพสีดำ ที่สุจริต</p>
+     <p class="text-sm text-gray-500">© 2024 Antique oven. All rights reserved.</p>
+    </div>
+   </footer><!-- Chatbot -->
+   <div id="chatbot-container" class="fixed bottom-6 right-6 z-50"><button id="chat-toggle" onclick="toggleChat()" class="w-16 h-16 rounded-full btn-secondary shadow-xl flex items-center justify-center chat-bubble"> <span class="text-3xl">💬</span> </button>
+    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 sm:w-96 card-surface rounded-2xl shadow-2xl overflow-hidden">
+     <div class="btn-primary p-4 flex items-center justify-between">
+      <div class="flex items-center gap-2"><span class="text-xl">🤖</span> <span class="font-semibold text-white">แชทบอท Antique oven</span>
+      </div><button onclick="toggleChat()" class="text-white hover:text-gray-200">✕</button>
+     </div>
+     <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-3">
+      <div class="flex gap-2">
+       <div class="w-8 h-8 rounded-full btn-primary flex items-center justify-center flex-shrink-0"><span>🔥</span>
+       </div>
+       <div class="bg-gray-700 rounded-2xl rounded-tl-none p-3 max-w-[80%]">
+        <p class="text-sm">สวัสดีค่ะ! ยินดีต้อนรับสู่ Antique oven 🔥 มีอะไรให้ช่วยไหมคะ?</p>
+       </div>
+      </div>
+     </div>
+     <div class="p-4 border-t border-gray-600">
+      <div class="grid grid-cols-2 gap-2 mb-3"><button onclick="sendQuickReply('สอบถามราคาถ่าน')" class="text-xs bg-gray-700 hover:bg-gray-600 rounded-full py-2 px-3 transition">💰 สอบถามราคา</button> <button onclick="sendQuickReply('สั่งซื้อสินค้า')" class="text-xs bg-gray-700 hover:bg-gray-600 rounded-full py-2 px-3 transition">🛒 สั่งซื้อ</button> <button onclick="sendQuickReply('สอบถามราคา')" class="text-xs bg-gray-700 hover:bg-gray-600 rounded-full py-2 px-3 transition">🚚 สอบถามการจัดส่ง</button> <button onclick="sendQuickReply('ติดต่อเรา')" class="text-xs bg-gray-700 hover:bg-gray-600 rounded-full py-2 px-3 transition">📞 ติดต่อ</button>
+      </div>
+      <div class="flex gap-2"><input type="text" id="chat-input" placeholder="พิมพ์ข้อความ..." class="flex-1 bg-gray-700 border border-gray-600 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-orange-500" onkeypress="handleChatEnter(event)"> <button onclick="sendMessage()" class="btn-primary w-10 h-10 rounded-full flex items-center justify-center"> <span>➤</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      site_name: 'Antique oven',
+      slogan: 'สร้างรายได้เสริมจากการเผาถ่านไม้แบบเตาอบครึ่งวงกลม วิธีทำง่าย ต้นทุนต่ำ กำไรดี',
+      phone_number: '062-236-6627',
+      line_id: '0622366627',
+      background_color: '#1e3a5f',
+      surface_color: '#2d3748',
+      text_color: '#f7fafc',
+      primary_action: '#ed8936',
+      secondary_action: '#f6ad55'
+    };
+
+    let config = { ...defaultConfig };
+
+    // Navigation
+    function showSection(sectionId) {
+      document.querySelectorAll('[id^="section-"]').forEach(section => {
+        section.classList.remove('section-active');
+        section.classList.add('section-hidden');
+      });
+      
+      const targetSection = document.getElementById('section-' + sectionId);
+      if (targetSection) {
+        targetSection.classList.remove('section-hidden');
+        targetSection.classList.add('section-active');
+      }
+      
+      document.querySelectorAll('[data-nav]').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.nav === sectionId) {
+          link.classList.add('active');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Chatbot
+    function toggleChat() {
+      const chatWindow = document.getElementById('chat-window');
+      const chatToggle = document.getElementById('chat-toggle');
+      chatWindow.classList.toggle('hidden');
+      chatToggle.classList.toggle('chat-bubble');
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const message = input.value.trim();
+      if (!message) return;
+      
+      addUserMessage(message);
+      input.value = '';
+      
+      setTimeout(() => {
+        const response = getBotResponse(message);
+        addBotMessage(response);
+      }, 500);
+    }
+
+    function sendQuickReply(message) {
+      addUserMessage(message);
+      setTimeout(() => {
+        const response = getBotResponse(message);
+        addBotMessage(response);
+      }, 500);
+    }
+
+    function handleChatEnter(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    }
+
+    function addUserMessage(text) {
+      const messagesDiv = document.getElementById('chat-messages');
+      const messageHtml = `
+        <div class="flex gap-2 justify-end">
+          <div class="rounded-2xl rounded-tr-none p-3 max-w-[80%]" style="background-color: var(--primary-action)">
+            <p class="text-sm text-white">${text}</p>
+          </div>
+        </div>
+      `;
+      messagesDiv.insertAdjacentHTML('beforeend', messageHtml);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function addBotMessage(text) {
+      const messagesDiv = document.getElementById('chat-messages');
+      const messageHtml = `
+        <div class="flex gap-2">
+          <div class="w-8 h-8 rounded-full btn-primary flex items-center justify-center flex-shrink-0">
+            <span>🔥</span>
+          </div>
+          <div class="bg-gray-700 rounded-2xl rounded-tl-none p-3 max-w-[80%]">
+            <p class="text-sm">${text}</p>
+          </div>
+        </div>
+      `;
+      messagesDiv.insertAdjacentHTML('beforeend', messageHtml);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function getBotResponse(message) {
+      const lowerMessage = message.toLowerCase();
+      const currentPhone = config.phone_number || defaultConfig.phone_number;
+      const currentLine = config.line_id || defaultConfig.line_id;
+      
+      if (lowerMessage.includes('ราคา') || lowerMessage.includes('ราคาท่าไหร่')) {
+        return `💰 ราคาถ่านไม้ของเรา:\n\n🪵 ถ่านเนื้อแข็ง: ฿15-25/กก.\n🌿 ถ่านเนื้ออ่อน: ฿8-12/กก.\n\nสั่งซื้อจำนวนมากราคาพิเศษค่ะ! ติดต่อ ${currentPhone}`;
+      } else if (lowerMessage.includes('สั่ง') || lowerMessage.includes('ซื้อ')) {
+        return `🛒 ขอบคุณที่สนใจค่ะ!\n\n📞 โทร: ${currentPhone}\n💬 Line: ${currentLine}\n\nเราพร้อมรับออเดอร์ตลอดเวลาค่ะ 😊`;
+      } else if (lowerMessage.includes('ส่ง') || lowerMessage.includes('จัดส่ง')) {
+        return `🚚 บริการจัดส่ง:\n\n• โซนใกล้ (ระแวกใกล้เคียง): ฟรี!\n• โซนกลาง: ฿500-1,500\n• ทั่วประเทศ: ติดต่อผ่านพ่อค้าคนกลาง\n\nจัดส่งใน 3-7 วันค่ะ`;
+      } else if (lowerMessage.includes('ติดต่อ') || lowerMessage.includes('โทร')) {
+        return `📞 ช่องทางติดต่อ:\n\n📱 โทร: ${currentPhone}\n💬 Line: ${currentLine}\n\n⏰ เปิดทำการ จ.-อา. 09:00-16:00`;
+      } else {
+        return `ขอบคุณสำหรับข้อความค่ะ! 😊\n\nหากต้องการข้อมูลเพิ่มเติม โปรดติดต่อ:\n📞 ${currentPhone}\n💬 Line: ${currentLine}`;
+      }
+    }
+
+    // Contact Form
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('form-success').classList.remove('hidden');
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('form-success').classList.add('hidden');
+      }, 5000);
+    });
+
+    // Element SDK
+    async function onConfigChange(cfg) {
+      const app = document.getElementById('app');
+      app.style.setProperty('--bg-color', cfg.background_color || defaultConfig.background_color);
+      app.style.setProperty('--surface-color', cfg.surface_color || defaultConfig.surface_color);
+      app.style.setProperty('--text-color', cfg.text_color || defaultConfig.text_color);
+      app.style.setProperty('--primary-action', cfg.primary_action || defaultConfig.primary_action);
+      app.style.setProperty('--secondary-action', cfg.secondary_action || defaultConfig.secondary_action);
+
+      const siteName = cfg.site_name || defaultConfig.site_name;
+      document.getElementById('nav-site-name').textContent = siteName;
+      document.getElementById('hero-title').textContent = siteName;
+      document.getElementById('footer-site-name').textContent = siteName;
+
+      document.getElementById('hero-slogan').textContent = cfg.slogan || defaultConfig.slogan;
+      document.getElementById('contact-phone').textContent = cfg.phone_number || defaultConfig.phone_number;
+      document.getElementById('contact-line').textContent = cfg.line_id || defaultConfig.line_id;
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => {
+              cfg.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => cfg.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              cfg.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.primary_action || defaultConfig.primary_action,
+            set: (value) => {
+              cfg.primary_action = value;
+              window.elementSdk.setConfig({ primary_action: value });
+            }
+          },
+          {
+            get: () => cfg.secondary_action || defaultConfig.secondary_action,
+            set: (value) => {
+              cfg.secondary_action = value;
+              window.elementSdk.setConfig({ secondary_action: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['site_name', cfg.site_name || defaultConfig.site_name],
+        ['slogan', cfg.slogan || defaultConfig.slogan],
+        ['phone_number', cfg.phone_number || defaultConfig.phone_number],
+        ['line_id', cfg.line_id || defaultConfig.line_id]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+      config = window.elementSdk.config;
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bfad1d740c374f2',t:'MTc2ODcwNDk5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
